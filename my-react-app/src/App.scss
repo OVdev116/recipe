@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,700&display=swap');
+
+:root {
+    --light-gray: #D9D9D9;
+}
+
+#root {
+    margin: 0 auto;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.container-fluid {
+    padding: 0 4rem;
+    max-width: 1568px;
+    margin: 0 auto;
+}
+
+.content-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
