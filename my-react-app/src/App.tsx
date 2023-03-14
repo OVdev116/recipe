@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './App.scss';
 import { Cards } from './components/cards/cards';
 import Header from './components/header/header';
 import Hero from './components/hero/hero';
 import { Sidebar } from './components/sidebar/sidebar';
 import { fetchRecipe } from './redux/slices/cardsSlice';
+import './App.scss';
+
 function App() {
   const store: any = useSelector(state => state);
   const dispatch = useDispatch();

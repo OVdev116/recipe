@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
+
 function Card({ item }: any) {
+
     return (
         <div className="card__item">
             <div className="card__item-img">
@@ -32,6 +34,7 @@ function Card({ item }: any) {
             </div>
 
         </div >
+
     );
 }
 export { Card };

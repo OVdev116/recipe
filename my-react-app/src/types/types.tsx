@@ -37,7 +37,10 @@ interface item {
 
 }
 interface cardsState {
-    cards: [],
-    search: ''
+    cards: any[],
+    search: string,
+    health: string,
+    diet: string,
+    mealType: string,
 }
 export { type recipeItem, type cardsState, type item, type params }

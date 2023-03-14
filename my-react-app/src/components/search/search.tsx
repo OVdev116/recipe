@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecipe, setSearch } from '../../redux/slices/cardsSlice';
-import debounce from 'lodash.debounce'
+import { debounce } from 'lodash';
 import './search.scss';
 
 
@@ -9,22 +9,25 @@ function Search() {
     const store: any = useSelector(state => state);
     const [value, setValue] = useState('');
     const dispatch = useDispatch();
-    const handleValue = (e) => {
+    const handleValue = (e: any) => {
         dispatch(setSearch(e.target.value))
     }
-    const updateSearchValue = useCallback(debounce((value) => {
-        dispatch(setSearch(value))
+    const updateSearchValue = useCallback(debounce((value: string) => {
+        dispatch(setSearch(value));
     }, 1000), [])
     return (
         <div className="search__form">
             <input type="text" placeholder="Search" value={value} onChange={e => {
-                setValue(e.target.value);
+                setValue(e.target.value); dispatch(setSearch(value))
                 updateSearchValue(e.target.value);
             }} />
             <button onClick={() => {
-                dispatch(setSearch(value))
-                dispatch(fetchRecipe());
-                setValue('');
+                if (value !== '') {
+                    setValue('');
+                    dispatch(fetchRecipe());
+
+                }
+
             }}>
                 <svg
                     width="20"

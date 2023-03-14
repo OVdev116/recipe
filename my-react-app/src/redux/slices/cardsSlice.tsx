@@ -1,25 +1,32 @@
 
 import { createSlice, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit'
-import { apiID, apiKeys, arrowChekced } from '../../api';
-import { cardsState, params } from '../../types/types';
+import { apiID, apiKeys } from '../../api';
+import { cardsState } from '../../types/types';
 import axios from 'axios';
+
 const initialState: cardsState = {
     cards: [],
     search: 'salad',
     health: 'alcohol-free',
     diet: 'balanced',
-    dishType: 'Bread'
+    mealType: 'Lunch'
 }
 
-export const fetchRecipe: any = createAsyncThunk(
+export const fetchRecipe: any = createAsyncThunk<
+    string,
+    string,
+    { state: cardsState }
+>(
     'cards/fetchRecipe',
-    async (params, thunkAPI) => {
-
+    async (_, { rejectWithValue, getState }) => {
+        const params = {
+            search: getState().cards.search,
+            health: getState().cards.health,
+            diet: getState().cards.diet,
+            mealType: getState().cards.mealType,
+        }
         try {
-            console.log(thunkAPI.getState().cards.search);
-            const response = await axios.get(`https://api.edamam.com/search?q=${thunkAPI.getState().cards.search}&app_id=${apiID}&app_key=${apiKeys}&health=${thunkAPI.getState().cards.health}&diet=${thunkAPI.getState().cards.diet}&dishType=${thunkAPI.getState().cards.dishType}`);
-
-
+            const response = await axios.get(`https://api.edamam.com/search?q=${params.search}&app_id=${apiID}&app_key=${apiKeys}&health=${params.health}&diet=${params.diet}&mealType=${params.mealType}`);
             return response.data.hits;
         } catch (error) {
             rejectWithValue(error)
@@ -40,8 +47,8 @@ export const cardsSlice = createSlice({
         setDiet(state, action) {
             state.diet = action.payload
         },
-        setDishType(state, action) {
-            state.dishType = action.payload
+        setMealType(state, action) {
+            state.mealType = action.payload
         }
     },
     extraReducers: {
@@ -57,6 +64,6 @@ export const cardsSlice = createSlice({
     },
 })
 
-export const { setSearch, setCategory, setDishType, setDiet } = cardsSlice.actions
+export const { setSearch, setCategory, setMealType, setDiet } = cardsSlice.actions
 
 export default cardsSlice.reducer

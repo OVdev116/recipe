@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { arrowChekced } from "../../api";
-import { fetchRecipe, setCategory, setHealthLabel } from "../../redux/slices/cardsSlice";
+import { fetchRecipe, setCategory, setDiet } from "../../redux/slices/cardsSlice";
 
 
 import './categories.scss'
-function Categories({ arrayLabel, title, nameRequest }) {
-    const [value, useValue] = useState('');
+function Categories({ arrayLabel, title, nameRequest }: { arrayLabel: string[], title: string, nameRequest: string }) {
     const store: any = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -16,8 +14,13 @@ function Categories({ arrayLabel, title, nameRequest }) {
                 {title}
             </div>
             <select className="categories__items" onChange={(e) => {
-                dispatch(setCategory(e.target.value))
-                dispatch(fetchRecipe({ search: store.cards.search, category: store.cards.health }))
+                if (nameRequest === 'health') {
+                    dispatch(setCategory(e.target.value))
+                } else if (nameRequest === 'diets') {
+                    dispatch(setDiet(e.target.value))
+                }
+
+                dispatch(fetchRecipe())
             }}>
                 {arrayLabel.map((item: string, index: number) =>
                     <option value={item} className="category__item" key={index}>{item}</option>
