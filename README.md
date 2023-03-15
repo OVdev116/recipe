@@ -1,5 +1,6 @@
 # Recipe
-![alt recipe](https://github.com/OVdev116/recipe/recipe.png)
+
+![Image alt](https://github.com/OVdev116/recipe/recipe.png)
 ## О проекте
 Приложение Рецепты с поиском блюд и фильтрацией, реализовано с использованием стороннего API [Recipe Search API](https://developer.edamam.com/edamam-recipe-api) для получения информации о рецепте,типе приема пищи и тд.
 ## Основной стек технологий в данном проекте:
