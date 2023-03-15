@@ -15,7 +15,7 @@ const initialState: cardsState = {
 export const fetchRecipe: any = createAsyncThunk<
     string,
     string,
-    { state: cardsState }
+    { state: any }
 >(
     'cards/fetchRecipe',
     async (_, { rejectWithValue, getState }) => {

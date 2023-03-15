@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-
-
+import './card.scss'
+const btnTabs = ['a', 'b'];
 function Card({ item }: any) {
-
+    const [isReadMore, setIsReadMore] = useState(true);
+    const toggleReadMore = () => {
+        setIsReadMore(!isReadMore);
+    };
     return (
         <div className="card__item">
             <div className="card__item-img">
@@ -21,16 +24,23 @@ function Card({ item }: any) {
                             {`${item.totalTime} hour`}
                         </span> : ''}
                 </div>
+
+
                 <ul className="card__item-info">
                     <li><span>Calories:</span> {item.calories}</li>
                     <li><span>Dish type:</span> {item.dishType}</li>
                     <li><span>Meal type:</span> {item.mealType}</li>
                 </ul>
-                <div className="card__item-ingredient">
+                <div className={`card__item-ingredient ${!isReadMore ? "active" : ""}`}>
                     {item.ingredientLines.map((ingredient: string, index: number) =>
                         <li><span className='card__item-index' key={`card_${index}`}>{index + 1}</span> {ingredient}</li>
                     )}
+
                 </div>
+                <button onClick={(e) => {
+                    toggleReadMore()
+                }
+                }>{isReadMore ? "...read more" : " show less"}</button>
             </div>
 
         </div >
