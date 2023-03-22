@@ -22,7 +22,6 @@ function FormInput({ title, text }: { title: string, text: string }) {
             <div className="form-input_text" >{text}</div>
             <input type="number" placeholder="enter the number" onChange={(e) => {
                 if (e.target.value !== '') {
-
                     formInputValue(e.target.value)
                 }
 

@@ -12,7 +12,7 @@ function Sidebar() {
                 <Categories arrayLabel={healthLabels} title="Allergies" nameRequest='health' />
                 <Categories arrayLabel={dietLabels} title="Diets" nameRequest='diets' />
                 <CategoriesRadio array={mealType} title="Dish type" />
-                <FormInput title="Calories" text="Input maximum desired calories per serving." />
+                <FormInput title="Calories" text="Input maximum desired calories per serving. For food database results default serving is 100g." />
             </div>
         </div>
     )
