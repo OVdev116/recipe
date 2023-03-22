@@ -18,14 +18,13 @@ function Search() {
     return (
         <div className="search__form">
             <input type="text" placeholder="Search" value={value} onChange={e => {
-                setValue(e.target.value); dispatch(setSearch(value))
+                setValue(e.target.value);
                 updateSearchValue(e.target.value);
             }} />
             <button onClick={() => {
                 if (value !== '') {
                     setValue('');
                     dispatch(fetchRecipe());
-
                 }
 
             }}>

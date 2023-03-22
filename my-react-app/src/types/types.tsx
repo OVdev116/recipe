@@ -42,5 +42,6 @@ interface cardsState {
     health: string,
     diet: string,
     mealType: string,
+    calories: number
 }
 export { type recipeItem, type cardsState, type item, type params }

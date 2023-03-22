@@ -9,7 +9,8 @@ const initialState: cardsState = {
     search: 'salad',
     health: 'alcohol-free',
     diet: 'balanced',
-    mealType: 'Lunch'
+    mealType: 'Lunch',
+    calories: 100,
 }
 
 export const fetchRecipe: any = createAsyncThunk<
@@ -24,9 +25,10 @@ export const fetchRecipe: any = createAsyncThunk<
             health: getState().cards.health,
             diet: getState().cards.diet,
             mealType: getState().cards.mealType,
+            calories: getState().cards.calories,
         }
         try {
-            const response = await axios.get(`https://api.edamam.com/search?q=${params.search}&app_id=${apiID}&app_key=${apiKeys}&health=${params.health}&diet=${params.diet}&mealType=${params.mealType}`);
+            const response = await axios.get(`https://api.edamam.com/search?q=${params.search}&app_id=${apiID}&app_key=${apiKeys}&health=${params.health}&diet=${params.diet}&mealType=${params.mealType}&calories=${params.calories}`);
             return response.data.hits;
         } catch (error) {
             rejectWithValue(error)
@@ -49,6 +51,9 @@ export const cardsSlice = createSlice({
         },
         setMealType(state, action) {
             state.mealType = action.payload
+        },
+        setInputValue(state, action) {
+            state.calories = action.payload
         }
     },
     extraReducers: {
@@ -64,6 +69,6 @@ export const cardsSlice = createSlice({
     },
 })
 
-export const { setSearch, setCategory, setMealType, setDiet } = cardsSlice.actions
+export const { setSearch, setCategory, setMealType, setDiet, setInputValue } = cardsSlice.actions
 
 export default cardsSlice.reducer
